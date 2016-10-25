@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        td {
+            border: red 2px dotted;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<table id="resultsTable">
+    <thead>
+    <tr>
+        <th>Area</th>
+        <th>Number Type</th>
+        <th>Select</th>
+        <th>Voice</th>
+        <th>Mail</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr class="tableRow">
+        <td>Placeholder Data</td>
+        <td>Placeholder Data</td>
+        <td>
+            <input type="checkbox" class="select"/>
+        </td>
+        <td>
+            <input type="checkbox" class="voice"/>
+        </td>
+        <td>
+            <input type="checkbox" class="mail"/>
+        </td>
+    </tr>
+    </tbody>
+
+    <tbody>
+    <tr class="tableRow">
+        <td>Placeholder Data</td>
+        <td>Placeholder Data</td>
+        <td>
+            <input type="checkbox" class="select"/>
+        </td>
+        <td>
+            <input type="checkbox" class="voice"/>
+        </td>
+        <td>
+            <input type="checkbox" class="mail"/>
+        </td>
+    </tr>
+    </tbody>
+
+    <tbody>
+    <tr class="tableRow">
+        <td>Placeholder Data</td>
+        <td>Placeholder Data</td>
+        <td>
+            <input type="checkbox" class="select"/>
+        </td>
+        <td>
+            <input type="checkbox" class="voice"/>
+        </td>
+        <td>
+            <input type="checkbox" class="mail"/>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    $(".tableRow :checkbox").change(function() {
+
+        var $this = $(this);
+
+        // If '.select' is clicked
+        if ($this.is('.select')) {
+            $this
+                    .closest('td')
+                    .nextAll()
+                    .find('.mail, .voice')
+                    .prop('checked', $this.is(':checked'));
+        }
+
+        // if '.mail' or '.voice' is clicked
+        if ($this.is('.mail, .voice')) {
+            var
+                    $select = $this.closest('tr').find('.select'),
+                    $checked = $this.closest('tr').find('.mail:checked, .voice:checked');
+
+            if ($checked.length == 2) // If both are checked
+                $select.prop('checked', true);
+            else // If one of them is not checked
+                $select.prop('checked', false);
+        }
+    });
+</script>
+</body>
+</html>
